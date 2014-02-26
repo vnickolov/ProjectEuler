@@ -1,8 +1,8 @@
-package Problem1;
+package main.problem1;
 
 import java.util.logging.Logger;
 
-import Static.Common;
+import main.shared.Common;
 
 public class MultiplesOf3And5 {
 	private final static Logger LOGGER = Logger.getLogger(MultiplesOf3And5.class.getName());

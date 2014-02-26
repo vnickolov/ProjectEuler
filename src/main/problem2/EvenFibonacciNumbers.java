@@ -1,13 +1,14 @@
-package Problem2;
+package main.problem2;
 
 import java.util.logging.Logger;
 
-import Static.Common;
+import main.shared.Common;
 
 public class EvenFibonacciNumbers {
 	private final static Logger LOGGER = Logger
 			.getLogger(EvenFibonacciNumbers.class.getName());
 	private int max = 0;
+	private int total = 0;
 
 	public EvenFibonacciNumbers() {
 	}
@@ -22,12 +23,13 @@ public class EvenFibonacciNumbers {
 		 * Do calculations
 		 */
 		this.max = max;
+		total = 0;
 		fibonacci(0, 1);
 		long endTime = System.nanoTime();
 		long duration = endTime - startTime;
 		String logMsg = String.format(
-				"End EvenFibonacciNumbers: Fibonacci is: %s Calculated in %s",
-				"", duration);
+				"End EvenFibonacciNumbers: Total of even Fibonacci numbers: %s Less than: %s Calculated in %s",
+				total, max, duration);
 		LOGGER.info(logMsg);
 	}
 
@@ -47,9 +49,11 @@ public class EvenFibonacciNumbers {
 	 */
 	public void fibonacci(int num1, int num2) {
 		int newNum = num1 + num2;
+//		LOGGER.info("Next Fib Number: " + newNum);
 		if (newNum < max) {
 			if (Common.isEven(newNum)) {
-				
+				total += newNum;
+//				LOGGER.info("New Total is: " + total);
 			}
 			fibonacci(num2, newNum);
 		}

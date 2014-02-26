@@ -1,4 +1,4 @@
-package Static;
+package main.shared;
 
 public class Common {
 
