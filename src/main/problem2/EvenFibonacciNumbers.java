@@ -22,40 +22,45 @@ public class EvenFibonacciNumbers {
 		/*
 		 * Do calculations
 		 */
-		this.max = max;
-		total = 0;
-		fibonacci(0, 1);
+		this.setMax(max);
+		setTotal(0);
+		String fib = fibonacci(0, 1);
 		long endTime = System.nanoTime();
 		long duration = endTime - startTime;
-		String logMsg = String.format(
-				"End EvenFibonacciNumbers: Total of even Fibonacci numbers: %s Less than: %s Calculated in %s",
-				total, max, duration);
+		String logMsg = String.format("End\n\tEvenFibonacciNumbers:\n\t"
+				+ "Total of even Fibonacci numbers: %s\n\t"
+				+ "Less than: %s\n\t" + "Calculated in %s\n\t"
+				+ "Fibonacci: %s", getTotal(), max, duration, fib);
 		LOGGER.info(logMsg);
 	}
 
 	/*
-	 * This function is used to do actual fibonacci
-	 */
-	// public String fibonacci(int num1, int num2, int x) {
-	// if (x > 0 ) {
-	// int newNum = num1 + num2;
-	// return newNum + " " + fibonacci(num2, newNum, x - 1);
-	// }
-	// return "";
-	// }
-
-	/*
 	 * Modified finonacci function to sum all even numbers
 	 */
-	public void fibonacci(int num1, int num2) {
+	public String fibonacci(int num1, int num2) {
 		int newNum = num1 + num2;
-//		LOGGER.info("Next Fib Number: " + newNum);
-		if (newNum < max) {
+		if (newNum <= getMax()) {
 			if (Common.isEven(newNum)) {
-				total += newNum;
-//				LOGGER.info("New Total is: " + total);
+				setTotal(getTotal() + newNum);
 			}
-			fibonacci(num2, newNum);
+			return newNum + " " + fibonacci(num2, newNum);
 		}
+		return "";
+	}
+
+	public int getMax() {
+		return max;
+	}
+
+	public void setMax(int max) {
+		this.max = max;
+	}
+
+	public int getTotal() {
+		return total;
+	}
+
+	public void setTotal(int total) {
+		this.total = total;
 	}
 }
